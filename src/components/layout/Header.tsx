@@ -97,7 +97,7 @@ export default function Header() {
       >
         <div className='layout flex h-14 items-center justify-between gap-2 md:gap-5'>
          <div>
-            <a href='/'>
+          
             <Image
               src='/images/logo/gvs.svg'
               alt='logo'
@@ -106,7 +106,7 @@ export default function Header() {
               height={100}
               className='h-16 w-auto relative top-0 lg:top-2 sm:h-20 md:h-24 lg:h-40'
             />
-            </a>
+        
           </div>
           <nav className='ml-auto hidden md:block'>
             <ul className='flex items-center justify-between space-x-4'>
