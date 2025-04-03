@@ -1,0 +1,7 @@
+.pasueAnimationOnHover {
+  animation-play-state: running;
+}
+.pasueAnimationOnHover:focus,
+.pasueAnimationOnHover:hover {
+  animation-play-state: paused;
+}
