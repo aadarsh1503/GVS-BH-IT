@@ -1,6 +1,4 @@
 import { socialHanfle } from '@/types';
-import i222 from "./i222.png"
-import i11 from "./i11.jpg"
 
 export type TeamIn = {
   id: number;
@@ -81,23 +79,10 @@ const team: TeamIn[] = [
     ],
   },
   {
-    id: 6,
-    name: 'Hamza Ali',
-    tag: 'Sales Executive',
-    profileURL: '/images/logo/t7.png',
-    about: '', // Added an empty string for the 'about' property
-    socials: [
-      {
-        name: 'email',
-        href: 'mailto:sales@gvs-bh.com',
-      },
-    ],
-  },
-  {
     id: 7,
     name: 'Santhosh kumar T',
     tag: 'It specialist',
-    profileURL: i11.src,
+    profileURL: '/images/logo/i11.jpg',
     about: '', // Added an empty string for the 'about' property
     socials: [
       {
@@ -110,7 +95,7 @@ const team: TeamIn[] = [
     id: 8,
     name: 'Aadarsh Chauhan',
     tag: 'Web Developer',
-    profileURL: i222.src,
+    profileURL: '/images/logo/i222.png',
     about: '', // Added an empty string for the 'about' property
     socials: [
       {
