@@ -26,7 +26,7 @@ export default function AboutPage() {
             <h2 className='mt-5'>
               We are a next-generation technology company, that brings to you
               the latest digital solutions tailored to the requirements of your
-              business. We at GVS-BH offers a wide array of services, ranging
+              business. We at GLOBAL VISION SOLUTIONS offers a wide array of services, ranging
               from Simple Static Sites to full-blown Content Managed Enterprise
               Solutions. A team of experienced developers, programmers, testers
               and designers work tirelessly to deliver quality business products
