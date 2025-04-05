@@ -79,7 +79,7 @@ const team: TeamIn[] = [
     ],
   },
   {
-    id: 7,
+    id: 5,
     name: 'Santhosh kumar T',
     tag: 'It specialist',
     profileURL: '/images/logo/i11.jpg',
@@ -92,7 +92,7 @@ const team: TeamIn[] = [
     ],
   },
   {
-    id: 8,
+    id: 7,
     name: 'Aadarsh Chauhan',
     tag: 'Web Developer',
     profileURL: '/images/logo/i222.png',
@@ -101,6 +101,19 @@ const team: TeamIn[] = [
       {
         name: 'email',
         href: 'mailto:technology@gvs-bh.com',
+      },
+    ],
+  },
+  {
+    id: 8,
+    name: 'Rohit Isaac George',
+    tag: 'Sales Executive',
+    profileURL: '/images/logo/T20.jpg',
+    about: '',
+    socials: [
+      {
+        name: 'email',
+        href: 'mailto:salesbah@gvscargo.net',
       },
     ],
   },
