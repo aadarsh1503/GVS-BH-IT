@@ -108,7 +108,7 @@ const team: TeamIn[] = [
     id: 8,
     name: 'Rohit Isaac George',
     tag: 'Sales Executive',
-    profileURL: '/images/logo/T20.jpg',
+    profileURL: '/images/logo/i132.jpg',
     about: '',
     socials: [
       {

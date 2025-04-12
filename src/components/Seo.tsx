@@ -10,7 +10,7 @@ const defaultMeta = {
   url: 'https://axstudios.tech',
   type: 'website',
   robots: 'follow, index',
-  image: '/images/large-og.png',
+  image: '/images/gvs.svg',
 };
 
 type SeoProps = {
