@@ -35,7 +35,7 @@ const team: TeamIn[] = [
     socials: [
       {
         name: 'email',
-        href: 'mailto:operations@shaheen.express',
+        href: 'mailto:info@gvs-bh.com',
       },
     ],
   },
@@ -48,7 +48,7 @@ const team: TeamIn[] = [
     socials: [
       {
         name: 'email',
-        href: 'mailto:finance@gvscargo.com',
+        href: 'mailto:finance@gvs-bh.com',
       },
     ],
   },
@@ -113,7 +113,7 @@ const team: TeamIn[] = [
     socials: [
       {
         name: 'email',
-        href: 'mailto:salesbah@gvscargo.net',
+        href: 'mailto:sales@gvs-bh.com',
       },
     ],
   },
