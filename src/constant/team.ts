@@ -22,7 +22,7 @@ const team: TeamIn[] = [
     socials: [
       {
         name: 'email',
-        href: 'mailto:Riyadh.shaheen@gvs-bh.com',
+        href: 'mailto:riyadh.shaheen@gvs-bh.com',
       },
     ],
   },
