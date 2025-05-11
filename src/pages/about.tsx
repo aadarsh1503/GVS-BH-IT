@@ -21,18 +21,19 @@ export default function AboutPage() {
               <span className='text-primary-base'>
                 Unleashing Creativity, Elevating Brands:{' '}
               </span>
-              Welcome to GVS-BH
+              Welcome to Global Vision Solution
             </h1>
             <h2 className='mt-5'>
               We are a next-generation technology company, that brings to you
               the latest digital solutions tailored to the requirements of your
-              business. We at GLOBAL VISION SOLUTIONS offers a wide array of services, ranging
-              from Simple Static Sites to full-blown Content Managed Enterprise
-              Solutions. A team of experienced developers, programmers, testers
-              and designers work tirelessly to deliver quality business products
-              that cater to the client’s demands. We focus on each client and
-              work dedicatedly to provide innovative and dynamic solutions using
-              cutting-edge tools and modern technology
+              business. We at GLOBAL VISION SOLUTIONS offers a wide array of
+              services, ranging from Simple Static Sites to full-blown Content
+              Managed Enterprise Solutions. A team of experienced developers,
+              programmers, testers and designers work tirelessly to deliver
+              quality business products that cater to the client’s demands. We
+              focus on each client and work dedicatedly to provide innovative
+              and dynamic solutions using cutting-edge tools and modern
+              technology
             </h2>
           </div>
         </section>
@@ -124,9 +125,9 @@ export default function AboutPage() {
 
             <p className='h2 rounded-2xl border border-primary-base p-10 shadow-xl shadow-primary-base/20'>
               So, if you're looking for a web development agency that's
-              dedicated to your success, look no further than Global Vision Solutions. Let's
-              work together to create a website that takes your business to the
-              next level.
+              dedicated to your success, look no further than Global Vision
+              Solutions. Let's work together to create a website that takes your
+              business to the next level.
             </p>
           </article>
         </section>
