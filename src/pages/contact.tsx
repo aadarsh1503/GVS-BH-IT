@@ -31,10 +31,10 @@ export default function ContactPage() {
             <div className='animate-fade-in-slow mt-10 flex w-full justify-center lg:mt-0 lg:w-[50%]'>
               <div
                 className='calendly-inline-widget rounded-md border border-gray-200 shadow-lg'
-                data-url='https://calendly.com/gvssoft-bh/gvs-meetup'
+                data-url='https://calendly.com/technology-gvs-bh/30min?embed_domain=localhost%3A3000&embed_type=Inline&background_color=ffffff&primary_color=0061ef&back=1'
                 style={{
                   minWidth: '100%',
-                  height: '550px',
+                  height: '700px',
                   overflow: 'hidden',
                 }}
               ></div>
