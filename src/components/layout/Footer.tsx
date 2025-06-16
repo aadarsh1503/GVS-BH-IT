@@ -44,7 +44,7 @@ const Footer = () => {
       setEmail('');
       setTimeout(() => setMessage(''), 3000);
     } catch (error) {
-      console.error('Subscription error:', error);
+      
       setMessage('Subscription failed. Please try again.');
       setTimeout(() => setMessage(''), 3000);
     } finally {
