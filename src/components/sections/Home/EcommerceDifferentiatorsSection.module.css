@@ -1,0 +1,42 @@
+/*
+  Defines the hexagon shape using a modern CSS clip-path.
+  This is much cleaner than old-school border tricks.
+*/
+.hexagon {
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+/*
+  Keyframes for the holographic scanline effect.
+  It's a thin, semi-transparent line that moves from top to bottom.
+*/
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+/*
+  The animation class. We apply this to a pseudo-element or a div
+  to create the visual effect. It runs infinitely.
+*/
+.scanlineAnimation::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px; /* The thickness of the scanline */
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.5), /* Use white for a light theme */
+    transparent
+  );
+  opacity: 0.6;
+  animation: scanline 4s linear infinite;
+  animation-delay: var(--scan-delay, 0s); /* Custom property for staggered delay */
+}

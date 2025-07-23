@@ -1,100 +1,180 @@
-// Define the type for each tech stack item
+import React, { useState, useEffect, useRef, createRef,useCallback  } from 'react';
+
+// Make sure the path to your CSS module is correct
+import styles from './TechExpertiseSection.module.css';
+
 type TechStackItem = {
   name: string;
   description: string[];
 };
 
-// Sample data for the tech stack with expanded descriptions
 const techStack: TechStackItem[] = [
-  {
-    name: 'Microsoft .NET',
-    description: [
-      'A framework for building applications on Windows using languages like C# and VB.NET.',
-      'Supports web applications, services, and Windows-based applications.',
-      'Includes various components like ASP.NET for web development, Entity Framework for database interactions, and more.',
-    ],
-  },
-  {
-    name: 'Java / J2EE',
-    description: [
-      'A widely-used programming language known for its platform independence via the Java Virtual Machine (JVM).',
-      'Includes technologies like Spring MVC, Hibernate, and RESTful APIs for web development.',
-      'Robust support for enterprise applications and large-scale systems.',
-    ],
-  },
-  {
-    name: 'Databases',
-    description: [
-      'Manages data storage and retrieval, with systems like SQL Server and Oracle for relational data.',
-      'NoSQL options like MongoDB for unstructured data and scalability.',
-      'Supports complex queries and transaction management for reliable data operations.',
-    ],
-  },
-  {
-    name: 'Mobile Apps',
-    description: [
-      'Android: Open-source OS by Google, enabling app development with Java/Kotlin.',
-      'iOS: Apple’s OS, providing a rich development environment with Swift and Xcode.',
-      'Cross-platform solutions like Xamarin and PhoneGap allow for code sharing across Android and iOS.',
-    ],
-  },
-  {
-    name: 'BI & Data Analytics',
-    description: [
-      'Tools for data analysis, reporting, and visualization like Tableau and Power BI.',
-      'Real-time processing frameworks such as Apache Kafka and Spark for big data applications.',
-      'Machine Learning and Neural Networks for predictive analytics and data-driven decision-making.',
-    ],
-  },
-  {
-    name: 'eCommerce & Web',
-    description: [
-      'Technologies for building online stores and websites including Magento and Shopify.',
-      'Web development frameworks like WordPress, PHP, and Ruby on Rails for dynamic content creation.',
-      'Responsive design practices to ensure accessibility across devices and screen sizes.',
-    ],
-  },
-  {
-    name: 'NextGen Technologies',
-    description: [
-      'Emerging technologies like IoT for connected devices and AI for intelligent automation.',
-      'Blockchain for secure and transparent transactions across industries.',
-      'Exploring the potential of augmented and virtual reality in various applications.',
-    ],
-  },
+    {
+        name: 'Microsoft .NET',
+        description: [
+          'Build robust, enterprise-grade applications on Windows using C#.',
+          'Develop scalable web APIs and services with ASP.NET Core.',
+          'Utilize Entity Framework for seamless, high-performance database integration.',
+        ],
+      },
+      {
+        name: 'Java / J2EE',
+        description: [
+          'Leverage Java for platform-independent, high-performance systems.',
+          'Implement powerful and secure backends with Spring, Hibernate, and RESTful APIs.',
+          'Ensure unmatched scalability and reliability for large-scale enterprise applications.',
+        ],
+      },
+      {
+        name: 'Databases',
+        description: [
+          'Architect and manage relational data with SQL Server, Oracle, and PostgreSQL.',
+          'Handle unstructured big data with the speed and flexibility of MongoDB.',
+          'Optimize complex queries and guarantee data integrity with robust transaction management.',
+        ],
+      },
+      {
+        name: 'Mobile Apps',
+        description: [
+          'Create stunning native Android experiences leveraging the full power of Kotlin.',
+          'Develop elegant and fluid iOS applications using the latest features in Swift.',
+          'Build efficient cross-platform solutions with React Native to maximize reach.',
+        ],
+      },
+      {
+        name: 'BI & Data Analytics',
+        description: [
+          'Visualize complex datasets and create actionable insights with Tableau & Power BI.',
+          'Engineer real-time big data pipelines using Apache Kafka and Spark.',
+          'Deploy advanced Machine Learning and AI models for predictive analytics.',
+        ],
+      },
+      {
+        name: 'NextGen Technologies',
+        description: [
+          'Innovate with the Internet of Things (IoT) for a network of intelligent devices.',
+          'Implement secure, transparent, and decentralized solutions using Blockchain.',
+          'Pioneer immersive user experiences with Augmented Reality (AR) and Virtual Reality (VR).',
+        ],
+      },
 ];
 
-export default function ClientsSection() {
+export default function TechExpertiseSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [indicatorStyle, setIndicatorStyle] = useState({});
+
+  const autoPlayIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<React.RefObject<HTMLButtonElement>[]>(
+    techStack.map(() => createRef<HTMLButtonElement>())
+  );
+
+  // Effect for auto-playing tabs
+  useEffect(() => {
+    // Clear any existing interval before starting a new one
+    if (autoPlayIntervalRef.current) {
+        clearInterval(autoPlayIntervalRef.current);
+    }
+    
+    if (isAutoPlay) {
+      autoPlayIntervalRef.current = setInterval(() => {
+        // We use a functional update here to ensure we always have the latest activeIndex
+        setActiveIndex(prevIndex => {
+            const nextIndex = (prevIndex + 1) % techStack.length;
+            // The handleTabClick logic is now primarily for manual clicks and animations,
+            // so we can manage the index change directly.
+            // However, to keep the animation logic consistent, we can still call it.
+            handleTabClick(nextIndex, true); 
+            return nextIndex; // This return is for the functional update itself
+        });
+      }, 4000); 
+    }
+    
+    return () => {
+      if (autoPlayIntervalRef.current) clearInterval(autoPlayIntervalRef.current);
+    };
+    // Re-run this effect ONLY when isAutoPlay changes. 
+    // Managing activeIndex inside the effect prevents re-creating the interval on every tab change.
+  }, [isAutoPlay]); 
+
+  // Effect for moving the active indicator
+  useEffect(() => {
+    const activeItem = itemRefs.current[activeIndex]?.current;
+    if (activeItem) {
+      setIndicatorStyle({
+        transform: `translateY(${activeItem.offsetTop}px)`,
+        height: `${activeItem.clientHeight}px`,
+      });
+    }
+  }, [activeIndex]);
+
+  const handleTabClick = useCallback((index: number, isAuto: boolean = false) => {
+    if (index === activeIndex && !isAuto) return;
+  
+    if (!isAuto && isAutoPlay) {
+      setIsAutoPlay(false);
+    }
+  
+    setIsAnimating(true);
+    setActiveIndex(index);
+  
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 200);
+  }, [activeIndex, isAutoPlay]); // <-- Add dependencies for useCallback
+
+  const activeTech = techStack[activeIndex];
+
   return (
-    <section id='sec-clients' className='relative bg-gray-50 py-14'>
-      <div className='layout flex flex-col items-center justify-center space-y-5 lg:py-0'>
-        <h2 className='heading'>
-          Tech
-          <span className='fancy mb-10'>Expertise</span>
+    <section id="sec-tech-expertise" className={styles.sectionBackground}>
+      <div className="layout flex flex-col items-center justify-center space-y-5 py-20 lg:py-24">
+        <h2 className="heading text-slate-900">
+          Tech <span className="fancy mb-10">Expertise</span>
         </h2>
-      </div>
+        <p className="text-center text-lg text-slate-600 max-w-3xl">
+          We architect solutions with a future-proof stack, ensuring scalability, security, and peak performance.
+        </p>
 
-      {/* Tech Stack Section */}
-      <div className='layout grid gap-6 py-8 sm:grid-cols-2 lg:grid-cols-3'>
-        {techStack.map((tech, index) => (
-          <div
-            key={index}
-            className='relative rounded-lg bg-blue-50 p-6 shadow-md transition-shadow duration-300 hover:shadow-lg'
-          >
-            <h3 className='text-lg font-semibold text-primary-base'>
-              {tech.name}
-            </h3>
-
-            {/* Render static description */}
-            <div className='mt-3 space-y-2 text-gray-700'>
-              {tech.description.map((desc, i) => (
-                <li key={i} className='flex items-start'>
-                  <span className='mr-2 text-blue-500'>•</span> {desc}
-                </li>
-              ))}
-            </div>
+        {/* 
+          FIX: Removed the onMouseEnter handler from this div.
+          Now, autoplay will only stop on a manual click, as handled by the handleTabClick function.
+        */}
+        <div className={styles.techContainer}>
+          <div className={styles.techNav} ref={navRef}>
+            <div className={styles.activeIndicator} style={indicatorStyle} />
+            
+            {techStack.map((tech, index) => (
+              <button
+                key={tech.name}
+                ref={itemRefs.current[index]}
+                onClick={() => handleTabClick(index)}
+                className={`${styles.navItem} ${activeIndex === index ? styles.active : ''} whitespace-nowrap mt-4`}
+              >
+                {tech.name}
+              </button>
+            ))}
           </div>
-        ))}
+
+          <div className={styles.contentPanel}>
+            {activeTech && (
+              <div
+                className={`${styles.contentWrapper} ${isAnimating ? styles.fade : ''}`}
+              >
+                <h3 className={styles.contentTitle}>{activeTech.name}</h3>
+                <ul className="mt-6 space-y-4">
+                  {activeTech.description.map((desc, i) => (
+                    <li key={`${activeTech.name}-desc-${i}`} className={styles.descriptionItem}>
+                      <div className={styles.descriptionIcon}></div>
+                      <p>{desc}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );

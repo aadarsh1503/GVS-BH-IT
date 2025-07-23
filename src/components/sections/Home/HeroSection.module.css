@@ -1,0 +1,159 @@
+/* src/styles/components/HeroSection.module.css */
+
+/* The main container */
+.heroContainer {
+    position: relative;
+    height: 100vh;
+    min-height: 800px;
+    width: 100%;
+    background-color: #020617; /* slate-950 */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f8fafc; /* slate-50 */
+  }
+  
+  /* The circular video aperture */
+  .aperture {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  width: 100vw;
+height: 100vh;
+transform: translate(-50%, -50%) scale(1);
+    border-radius: 50%;
+    overflow: hidden;
+    opacity: 0;
+    animation: apertureOpen 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+  }
+  
+  .aperture::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 40%, #020617 70%);
+    z-index: 2;
+  }
+  
+  .video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.7;
+  }
+  
+  /* The main content box */
+  .contentBox {
+    position: relative;
+    max-width: 48rem; /* 768px */
+    padding: 2.5rem; /* 40px */
+    text-align: center;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: contentFadeIn 1s ease-out 2s forwards;
+  }
+  
+  /* The animated border lines */
+  .contentBox::before,
+  .contentBox::after {
+    content: '';
+    position: absolute;
+    background-color: #3b82f6; /* primary-base */
+    box-shadow: 0 0 15px #3b82f6, 0 0 25px #3b82f6;
+    opacity: 0;
+  }
+  
+  /* Top and Bottom lines */
+  .contentBox::before {
+    top: 0;
+    left: 50%;
+    width: 0%;
+    height: 2px;
+    transform: translateX(-50%);
+    animation: drawHorizontal 1s ease-out 1.5s forwards;
+  }
+  
+  /* Left and Right lines */
+  .contentBox::after {
+    top: 50%;
+    left: 0;
+    width: 2px;
+    height: 0%;
+    transform: translateY(-50%);
+    animation: drawVertical 1s ease-out 1.5s forwards;
+  }
+  
+  .heading {
+    font-size: 4.5rem; /* ~text-7xl */
+    font-weight: 800; /* extrabold */
+    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+  
+  .heading span {
+    color: #0EA5E9; /* primary-light */
+  }
+  
+  .paragraph {
+    font-size: 1.5rem; /* ~text-2xl */
+    color: #cbd5e1; /* slate-300 */
+    margin-top: 2rem;
+  }
+  
+  .ctaButton {
+    display: inline-block;
+    margin-top: 2.5rem;
+    padding: 1rem 2.5rem; /* py-4 px-10 */
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* semibold */
+    color: #f8fafc;
+    background-color: transparent;
+    border: 2px solid #3b82f680; /* primary-base with opacity */
+    border-radius: 9999px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  
+  .ctaButton:hover {
+    background-color: #0EA5E9;
+    border-color: #60a5fa;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #3b82f6;
+  }
+  
+  /* KEYFRAME ANIMATIONS */
+  @keyframes apertureOpen {
+    to {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes contentFadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes drawHorizontal {
+    to {
+      opacity: 1;
+      width: 100%;
+    }
+  }
+  
+  @keyframes drawVertical {
+    to {
+      opacity: 1;
+      height: 100%;
+    }
+  }

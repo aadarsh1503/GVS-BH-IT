@@ -1,0 +1,124 @@
+/*
+ * Styles for ServicePortfolioSection.tsx
+ * Uses Tailwind's @apply for consistency with the design system.
+ */
+
+/* --- Main Section & Background --- */
+.portfolio-section {
+    @apply relative overflow-hidden py-20 md:py-28;
+  }
+  
+  .portfolio-layout {
+    @apply layout relative z-10;
+  }
+  
+  .fancy-futuristic {
+    @apply bg-gradient-to-r from-cyan-500 to-purple-500 bg-clip-text text-transparent;
+  }
+  
+  .portfolio-subtitle {
+    @apply h3 max-w-2xl font-light text-slate-600;
+  }
+  
+  /* --- Animated Grid Background --- */
+  .animated-grid-bg {
+    @apply absolute inset-0 z-0 bg-slate-50;
+  }
+  
+  .grid-pattern {
+    @apply absolute inset-0 bg-[linear-gradient(to_right,#e5e7eb_1px,transparent_1px),linear-gradient(to_bottom,#e5e7eb_1px,transparent_1px)] bg-[size:4rem_4rem];
+    mask-image: radial-gradient(ellipse at center, white, transparent 75%);
+  }
+  
+  .scan-line-container {
+    @apply absolute inset-0;
+  }
+  
+  .scan-line {
+    @apply absolute h-full w-px bg-gradient-to-b from-cyan-400/0 via-cyan-400/80 to-cyan-400/0;
+    animation: scan 8s linear infinite;
+  }
+  
+  @keyframes scan {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(150vw); /* Ensure it crosses the entire viewport */
+    }
+  }
+  
+  /* --- Portfolio Grid --- */
+  .portfolio-grid {
+    @apply grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  /* --- Futuristic Card --- */
+  .portfolio-card {
+    /* We use CSS variables passed from the component for theming */
+    --card-shadow: var(--shadow-color, rgba(56, 189, 248, 0.2));
+    --card-hover-shadow: var(--hover-shadow-color, rgba(56, 189, 248, 0.3));
+    
+    @apply group relative flex h-full transform flex-col overflow-hidden rounded-2xl p-6 transition-all duration-300;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px 0 var(--card-shadow);
+  }
+  
+  .portfolio-card:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 12px 40px 0 var(--card-hover-shadow);
+  }
+  
+  /* Glowing top border accent */
+  .card-glow-border {
+    @apply absolute left-0 top-0 h-1 w-full transition-all duration-500;
+    background-image: linear-gradient(to right, transparent, var(--accent-color, #22d3ee), transparent);
+  }
+  
+  .portfolio-card:hover .card-glow-border {
+    width: 200%;
+    transform: translateX(-25%);
+  }
+  
+  /* Card Content */
+  .card-title {
+    @apply mb-4 text-xl font-bold;
+    color: var(--text-color, #0e7490);
+  }
+  
+  .card-list {
+    @apply list-none space-y-3 text-slate-700;
+  }
+  
+  .card-list-item {
+    @apply flex items-center;
+  }
+  
+  /* Pulsing Bullet Points */
+  .card-bullet-container {
+    @apply relative mr-3 flex h-2.5 w-2.5 flex-shrink-0 items-center justify-center;
+  }
+  
+  .card-bullet-static {
+    @apply h-full w-full rounded-full;
+    background-color: var(--accent-color, #22d3ee);
+  }
+  
+  .card-bullet-ping {
+    @apply absolute h-full w-full rounded-full opacity-75;
+    background-color: var(--accent-color, #22d3ee);
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0;
+      transform: scale(2.5);
+    }
+  }
