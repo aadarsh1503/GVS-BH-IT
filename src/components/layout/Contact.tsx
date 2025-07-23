@@ -3,6 +3,7 @@ import { FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 
 import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
+
 import WhatsAppButton from '../WhatsapButton/WhatsapButton';
 
 type ContactProps = {

@@ -3,8 +3,6 @@ import { NextPage } from 'next';
 import React from 'react';
 
 import ClientsSection from '@/components/ClientsSection/ClientsSection';
-import Seo from '@/components/Seo';
-
 // --- FIX: Import paths ko actual folder name 'Home' se match kiya gaya ---
 import AppDevelopmentSection from '@/components/sections/Home/AppDevelopmentSection';
 import ClientTestimonialsSection from '@/components/sections/Home/ClientTestimonialsSection';
@@ -16,6 +14,7 @@ import HeroSection from '@/components/sections/Home/HeroSection';
 import PartnersSection from '@/components/sections/Home/PartnersSection';
 import ServicePortfolioSection from '@/components/sections/Home/ServicePortfolioSection';
 import ServicesSection from '@/components/sections/Home/ServicesSection';
+import Seo from '@/components/Seo';
 
 const Home: NextPage = () => {
   return (

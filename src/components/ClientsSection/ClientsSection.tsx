@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, createRef,useCallback  } from 'react';
+import React, { createRef, useCallback, useEffect, useRef, useState } from 'react';
 
 // Make sure the path to your CSS module is correct
 import styles from './TechExpertiseSection.module.css';
@@ -71,6 +71,21 @@ export default function TechExpertiseSection() {
     techStack.map(() => createRef<HTMLButtonElement>())
   );
 
+  const handleTabClick = useCallback((index: number, isAuto = false) => {
+    if (index === activeIndex && !isAuto) return;
+  
+    if (!isAuto && isAutoPlay) {
+      setIsAutoPlay(false);
+    }
+  
+    setIsAnimating(true);
+    setActiveIndex(index);
+  
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 200);
+  }, [activeIndex, isAutoPlay]); // This is correct, as it lists its own dependencies.
+
   // Effect for auto-playing tabs
   useEffect(() => {
     // Clear any existing interval before starting a new one
@@ -95,9 +110,8 @@ export default function TechExpertiseSection() {
     return () => {
       if (autoPlayIntervalRef.current) clearInterval(autoPlayIntervalRef.current);
     };
-    // Re-run this effect ONLY when isAutoPlay changes. 
-    // Managing activeIndex inside the effect prevents re-creating the interval on every tab change.
-  }, [isAutoPlay]); 
+  // FIX: Added 'handleTabClick' to the dependency array.
+  }, [isAutoPlay, handleTabClick]); 
 
   // Effect for moving the active indicator
   useEffect(() => {
@@ -110,21 +124,6 @@ export default function TechExpertiseSection() {
     }
   }, [activeIndex]);
 
-  const handleTabClick = useCallback((index: number, isAuto: boolean = false) => {
-    if (index === activeIndex && !isAuto) return;
-  
-    if (!isAuto && isAutoPlay) {
-      setIsAutoPlay(false);
-    }
-  
-    setIsAnimating(true);
-    setActiveIndex(index);
-  
-    setTimeout(() => {
-      setIsAnimating(false);
-    }, 200);
-  }, [activeIndex, isAutoPlay]); // <-- Add dependencies for useCallback
-
   const activeTech = techStack[activeIndex];
 
   return (
@@ -136,11 +135,7 @@ export default function TechExpertiseSection() {
         <p className="text-center text-lg text-slate-600 max-w-3xl">
           We architect solutions with a future-proof stack, ensuring scalability, security, and peak performance.
         </p>
-
-        {/* 
-          FIX: Removed the onMouseEnter handler from this div.
-          Now, autoplay will only stop on a manual click, as handled by the handleTabClick function.
-        */}
+        
         <div className={styles.techContainer}>
           <div className={styles.techNav} ref={navRef}>
             <div className={styles.activeIndicator} style={indicatorStyle} />

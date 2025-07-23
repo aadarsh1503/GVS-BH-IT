@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+
 import Seo from '@/components/Seo';
 
 const TermsAndConditions: NextPage = () => {

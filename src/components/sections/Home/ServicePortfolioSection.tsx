@@ -1,8 +1,8 @@
 // src/components/sections/home/ServicePortfolioSection.tsx
 "use client";
 
-import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import React, { useEffect,useRef } from 'react';
 
 // --- STYLES: The core of the new, sophisticated aesthetic ---
 const AdvancedAestheticStyles = () => (

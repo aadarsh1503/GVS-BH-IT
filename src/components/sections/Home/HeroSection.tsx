@@ -1,8 +1,8 @@
 // src/components/sections/home/HeroSection.tsx
 "use client"; // <-- IMPORTANT: Mark this as a Client Component
 
-import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import React, { useState } from 'react';
 
 import ArrowLink from '@/components/links/ArrowLink';
 import WhatsAppButton from '@/components/WhatsapButton/WhatsapButton';

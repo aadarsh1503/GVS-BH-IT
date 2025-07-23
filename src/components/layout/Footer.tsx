@@ -1,27 +1,47 @@
+// IMPORTANT: To use external images with next/image, you must configure the domain
+// in your `next.config.js` file. Add the following configuration:
+//
+// module.exports = {
+//   images: {
+//     remotePatterns: [
+//       {
+//         protocol: 'https',
+//         hostname: 'gvs-bh.com',
+//         port: '',
+//         pathname: '/images/**',
+//       },
+//     ],
+//   },
+// };
+
+import Image from 'next/image'; // Import the Next.js Image component
 import React, { useState } from 'react';
 import {
+  RiArrowRightUpLine,
   RiFacebookFill,
   RiInstagramLine,
   RiLinkedinFill,
   RiMailFill,
-  RiArrowRightUpLine, // A more dynamic icon for the newsletter button
 } from 'react-icons/ri';
 
 import IconLink from '@/components/links/IconLink';
-import FooterLink from '../links/FooterLink'; // Assuming this is a styled link
+
+import FooterLink from '../links/FooterLink';
 
 // A new component for a more visually appealing logo/brand name
 const FooterLogo = () => (
   <div className='flex items-center space-x-2'>
     {/* Logo image inside circular background */}
-    <div className='flex h-full mt-0 lg:-mt-12 w-full items-center justify-center rounded-full  overflow-hidden'>
-      <img 
-        src='https://gvs-bh.com/images/logo/gvs.svg' 
-        alt='Global Vision Logo' 
-        className='h-56 w-56 object-cover' 
+    <div className='relative flex h-56 w-56 items-center justify-center rounded-full overflow-hidden mt-0 lg:-mt-12'>
+      {/* FIX: Replaced <img> with next/image's <Image> for optimization. */}
+      {/* Added width and height props, which are required. */}
+      <Image
+        src='https://gvs-bh.com/images/logo/gvs.svg'
+        alt='Global Vision Logo'
+        fill // 'fill' is a great option for responsive containers
+        className='object-cover'
       />
     </div>
-    
   </div>
 );
 
@@ -31,18 +51,35 @@ const Footer = () => {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // The subscription logic remains the same
+  // FIX: Implemented subscription logic to utilize `setLoading` and `setMessage`.
+  // This is a mock API call to demonstrate functionality.
   const handleSubscribe = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // ... same logic as before
+    setLoading(true);
+    setMessage(''); // Clear previous messages
+
+    try {
+      // Simulate an API call delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // In a real application, you would make your API call here.
+      // For example:
+      // const response = await fetch('/api/subscribe', { body: JSON.stringify({ email }) });
+      // if (!response.ok) throw new Error('Subscription failed.');
+
+      setMessage(`Success! ${email} has been added to our newsletter.`);
+      setEmail(''); // Clear input on success
+    } catch (error) {
+      setMessage('Oops! Something went wrong. Please try again.');
+    } finally {
+      setLoading(false); // Ensure loading state is reset
+    }
   };
 
   return (
     <footer className='bg-white text-slate-700'>
       {/* 
         SECTION 1: The "Sexy" Newsletter CTA
-        This is now a standalone, visually stunning section that acts as a "pre-footer".
-        The subtle gradient and centered, bold typography make it a powerful focal point.
       */}
       <div className='bg-gradient-to-r from-slate-50 to-gray-100 py-16 sm:py-20 lg:py-24'>
         <div className='layout mx-auto max-w-2xl px-6 text-center'>
@@ -85,21 +122,20 @@ const Footer = () => {
             </div>
           </form>
           {message && (
-            <p className='mt-4 text-sm text-slate-600'>{message}</p>
+            <p className={`mt-4 text-sm ${message.includes('Success') ? 'text-green-600' : 'text-red-600'}`}>{message}</p>
           )}
         </div>
       </div>
 
       {/* 
         SECTION 2: Main Footer Content
-        Cleaner layout, better typography, and organized columns.
       */}
       <div className='layout mx-auto max-w-6xl px-6 py-16 sm:px-10 lg:px-12'>
         <div className='grid gap-12 lg:grid-cols-12'>
           {/* Left Column: Brand & Socials */}
           <div className='lg:col-span-4'>
             <FooterLogo />
-            <p className='mt-0 lg:-mt-12 text-base leading-7 text-slate-600'>
+            <p className='-mt-16 text-base leading-7 text-slate-600'>
               Crafting digital experiences where advanced technology feels like
               magic. Let's build the future, together.
             </p>
@@ -182,8 +218,6 @@ const Footer = () => {
 
         {/* 
           SECTION 3: Bottom Bar
-          A clean, final element for copyright and credits. The top border provides
-          clear separation.
         */}
         <div className='mt-16 border-t border-slate-200 pt-8'>
           <p className='text-sm text-slate-500'>

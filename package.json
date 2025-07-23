@@ -7,8 +7,9 @@
     "export": "next build && next export",
     "start": "NODE_ENV=production node ./server.js",
     "build": "next build",
-    "lint": "next lint",
-    "lint:fix": "eslint src --fix && yarn format",
+
+      "lint": "eslint . --ext .ts,.tsx",
+  "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "lint:strict": "eslint --max-warnings=0 src",
     "typecheck": "tsc --noEmit --incremental false",
     "test:watch": "jest --watch",
