@@ -10,7 +10,7 @@ import WhatsAppButton from '@/components/WhatsapButton/WhatsapButton';
 const HeroSection = () => {
   // --- State and URLs ---
   const [videoError, setVideoError] = useState(false);
-  const videoURL = 'https://assets.mixkit.co/videos/41644/41644-720.mp4';
+  const videoURL = 'https://res.cloudinary.com/dtjskgsnk/video/upload/v1753344172/mixkit-software-developer-working-on-a-computer-41644-hd-ready_cvu4kr.mp4';
   
   // A high-quality screenshot from the video to use as a poster and fallback
   const fallbackImageURL = 'https://images.pexels.com/photos/5473806/pexels-photo-5473806.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260';
@@ -21,7 +21,7 @@ const HeroSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2, // Animate children one after another
+        staggerChildren: 0.2,
         delayChildren: 0.3,
       },
     },

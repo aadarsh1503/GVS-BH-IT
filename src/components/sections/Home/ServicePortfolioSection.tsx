@@ -180,7 +180,7 @@ const PortfolioCard = ({ title, items, theme }: PortfolioCardProps) => (
     </h3>
     <ul className="list-none space-y-4 font-light text-slate-700">
       {items.map((item) => (
-        <li key={item} className="flex items-start">
+        <li key={item} className="flex  font-semibold items-start">
           <svg
             className={`mr-3 mt-[5px] h-3 w-3 flex-shrink-0 text-${theme.accent}-500 opacity-80`}
             fill="currentColor"
@@ -241,7 +241,7 @@ const ServicePortfolioSection = () => {
             <h2 className="heading text-slate-800">
                 Cognitive <span className="fancy-heading-v2">Service Matrix</span>
             </h2>
-            <p className="h3 max-w-3xl font-light text-slate-600">
+            <p className="h3 max-w-3xl   text-black" >
                 Interface with our core protocols, engineered to transcend the digital frontier and propel your existence forward.
             </p>
           </motion.div>
