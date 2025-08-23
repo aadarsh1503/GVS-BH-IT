@@ -104,19 +104,19 @@ const team: TeamIn[] = [
       },
     ],
   },
-  {
-    id: 8,
-    name: 'Rohit Isaac George',
-    tag: 'Sales Executive',
-    profileURL: '/images/logo/i132.jpg',
-    about: '',
-    socials: [
-      {
-        name: 'email',
-        href: 'mailto:sales@gvs-bh.com',
-      },
-    ],
-  },
+  // {
+  //   id: 8,
+  //   name: 'Rohit Isaac George',
+  //   tag: 'Sales Executive',
+  //   profileURL: '/images/logo/i132.jpg',
+  //   about: '',
+  //   socials: [
+  //     {
+  //       name: 'email',
+  //       href: 'mailto:sales@gvs-bh.com',
+  //     },
+  //   ],
+  // },
 ];
 
 export default team;
